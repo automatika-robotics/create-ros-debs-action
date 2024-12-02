@@ -1,0 +1,8 @@
+name: "Create ROS Debs"
+description: "Create ROS deb packages on different versions of ROS"
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: upload
+  color: green
