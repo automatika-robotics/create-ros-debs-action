@@ -26,6 +26,7 @@ for version in "${ROS2_VERSIONS[@]}"; do
 
   echo "Running deb creation script"
   docker exec -i ros-build-$version /bin/sh "/create_deb.sh"
+
   # Get deb file name
   DEB_NAME=$(docker exec ros-build-$version /bin/sh -c 'ls *.deb')
 
