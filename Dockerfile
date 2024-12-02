@@ -6,5 +6,5 @@ COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 
 COPY ./create_deb.sh /usr/local/create_deb.sh
 
-ENTRYPOINT ["build_and_test.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 
