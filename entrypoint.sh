@@ -21,8 +21,11 @@ for version in "${ROS2_VERSIONS[@]}"; do
   echo "Copying project files"
   docker cp . ros-build-$version:/project
 
-  echo "Running deb build script"
-  docker exec -i ros-build-$version /bin/sh "/usr/local/create_deb.sh"
+  echo "Copying deb creation script"
+  docker cp /create_deb.sh ros-build-$version:/create_deb.sh
+
+  echo "Running deb creation script"
+  docker exec -i ros-build-$version /bin/sh "/create_deb.sh"
   # Get deb file name
   DEB_NAME=$(docker exec ros-build-$version /bin/sh -c 'ls *.deb')
 
