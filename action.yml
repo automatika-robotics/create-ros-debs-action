@@ -1,8 +1,21 @@
-name: "Create ROS Debs"
+name: "Create ROS2 Debs"
 description: "Create ROS deb packages on different versions of ROS"
+inputs:
+  dir-name:
+    description: "Name of the directory for storing generated deb files. Defaults to debs"
+    required: false
+    default: 'debs'
+  ros-versions-matrix:
+    description: "Space separated strings of ROS2 version names. e.g 'humble iron jazzy'. Defaults to version which have not reached End-of-Life, check https://endoflife.date/api/ros-2.json"
+    required: false
+    default: ''
+
 runs:
   using: docker
   image: Dockerfile
+    args:
+    - "${{ inputs.dir-name }}"
+    - "${{ inputs.ros-versions-matrix }}"
 branding:
   icon: upload
   color: green

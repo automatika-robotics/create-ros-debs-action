@@ -1,6 +1,6 @@
 FROM docker:dind
 
-RUN apk add bash
+RUN apk add --no-cache bash jq
 
 COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
 
