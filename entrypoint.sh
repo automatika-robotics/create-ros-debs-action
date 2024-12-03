@@ -20,6 +20,12 @@ get_versions_with_future_eol() {
     # Make the web call and store the response in a variable
     local response=$(curl -s "https://endoflife.date/api/ros-2.json")
 
+    # Check if the curl request was successful
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to retrieve ROS2 versions from external API. Please run the action again. If failure persists, please open an issue."
+        exit 1
+    fi
+
     # Get today's date in YYYY-MM-DD format
     local today=$(date +%Y-%m-%d)
 
