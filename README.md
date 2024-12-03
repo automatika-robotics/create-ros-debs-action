@@ -30,7 +30,7 @@ jobs:
 
       - name: Create ROS2 Debs
         uses: automatika-robotics/create-ros-debs-action@v1
-        inputs:
+        with:
           dir-name: 'debs'  # Optional, default is 'debs'
           ros-versions-matrix: 'humble iron jazzy'  # Optional, this parameter is a space separated list of strings. Defaults to non-EOL ROS2 versions
 
