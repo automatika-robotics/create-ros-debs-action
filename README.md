@@ -25,16 +25,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Create ROS2 Debs
         uses: automatika-robotics/create-ros-debs-action@v1
         with:
           dir-name: 'debs'  # Optional, default is 'debs'
           ros-versions-matrix: 'humble iron jazzy'  # Optional, this parameter is a space separated list of strings. Defaults to non-EOL ROS2 versions
 
-      - name: Upload Debs Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ros2-debs
