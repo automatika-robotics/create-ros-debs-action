@@ -1,6 +1,6 @@
 # create-ros-debs-action
 
-The `create-ros-debs-action` GitHub Action automates the process of creating installable Debian (deb) packages from a source repository containing a ROS2 package. It supports multiple versions of ROS2, allowing you to generate deb files for different distributions like Humble, Iron, Jazzy, etc.
+The `create-ros-debs-action` GitHub Action automates the process of creating installable Debian (deb) packages from a source repository containing a ROS2 package. It supports multiple versions of ROS2, allowing you to generate deb files for different distributions like Humble, Iron, Jazzy, etc. This action can be used for your internal CI pipelines and to create installable debs for self-hosted PPAs. 
 
 ## Features
 
