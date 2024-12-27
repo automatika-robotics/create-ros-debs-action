@@ -45,6 +45,10 @@ jobs:
 | `dir-name`            | The directory where the generated deb files will be stored.                                                                                                                                                                               | No       | `'debs'`                                        |
 | `ros-versions-matrix` | A space-separated list of ROS 2 version names to generate deb packages for (e.g., `'humble iron jazzy'`). If left empty, it defaults to all non-EOL ROS 2 versions. You can check the current EOL status at [endoflife.date/api/ros-2.json](https://endoflife.date/api/ros-2.json). | No       | Non-EOL ROS 2 versions (as per API)             |
 
+## Contributions
+
+All contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue in the [repository](https://github.com/automatika-robotics/push-to-release-repo-action/issues).
+
 
 Happy building! 🚀
 
