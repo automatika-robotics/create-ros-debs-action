@@ -87,7 +87,9 @@ for version in "${ROS2_VERSIONS[@]}"; do
   docker cp debs/$DEB_NAME ros-test-$version:/
 
   # Install package
-  docker exec ros-test-$version /bin/sh -c "apt update && apt install -y ./$DEB_NAME"
+  docker exec ros-test-$version /bin/sh -c "apt update && apt install -y python3-pip"
+  docker exec ros-test-$version /bin/sh -c "rosdep update"
+  docker exec ros-test-$version /bin/sh -c "apt install -y ./$DEB_NAME"
 
   # TODO: Add provision for running tests
 
