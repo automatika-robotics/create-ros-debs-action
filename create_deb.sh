@@ -12,8 +12,12 @@ apt-get -y install fakeroot dpkg-dev debhelper
 cd /project
 lsb_release -sc
 
-bloom-generate rosdebian --os-name ubuntu --os-version $(lsb_release -sc) --ros-distro $ROS_DISTRO
+# initialize and update rosdep
+rosdep init 2>/dev/null
+rosdep update
 
+# create debs
+bloom-generate rosdebian --os-name ubuntu --os-version $(lsb_release -sc) --ros-distro $ROS_DISTRO
 fakeroot debian/rules binary
 
 
