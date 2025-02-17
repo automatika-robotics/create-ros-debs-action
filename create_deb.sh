@@ -22,7 +22,7 @@ fi
 
 # Update rosdep database
 echo "Updating rosdep database..."
-rosdep update || { echo "Failed to update rosdep"; exit 1; }
+rosdep update --include-eol-distros || { echo "Failed to update rosdep"; exit 1; }
 
 # create debs
 bloom-generate rosdebian --os-name ubuntu --os-version $(lsb_release -sc) --ros-distro $ROS_DISTRO

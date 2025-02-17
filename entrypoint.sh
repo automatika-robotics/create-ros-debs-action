@@ -88,7 +88,7 @@ for version in "${ROS2_VERSIONS[@]}"; do
 
   # Install package
   docker exec ros-test-$version /bin/sh -c "apt update && apt install -y python3-pip"
-  docker exec ros-test-$version /bin/sh -c "rosdep update"
+  docker exec ros-test-$version /bin/sh -c "rosdep update --include-eol-distros"
   docker exec ros-test-$version /bin/sh -c "apt install -y ./$DEB_NAME"
 
   # TODO: Add provision for running tests
