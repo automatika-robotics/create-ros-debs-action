@@ -1,5 +1,5 @@
 name: "Create ROS2 Debs"
-description: "Create ROS deb packages on different versions of ROS"
+description: "Automatically create ROS2 deb packages on different versions of ROS2"
 inputs:
   dir-name:
     description: "Name of the directory for storing generated deb files. Defaults to debs"
