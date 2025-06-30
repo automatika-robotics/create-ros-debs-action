@@ -54,6 +54,8 @@ echo "[+] ROS2 Versions: ${ROS2_VERSIONS[@]}"
 
 # Move to source folder
 cd "$(dirname "$SOURCE_DIR")"
+echo "[+] Files in this folder:"
+ls .
 
 # Make target dir
 echo "[+] Creating folder: $TARGET_DIR"
