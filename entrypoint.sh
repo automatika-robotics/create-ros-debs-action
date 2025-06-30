@@ -52,10 +52,9 @@ echo "[+] Target Directory: $TARGET_DIR"
 echo "[+] ROS2 Versions: ${ROS2_VERSIONS[@]}"
 
 
-# Move to source folder
-cd "$(dirname "$SOURCE_DIR")"
+# Check source folder
 echo "[+] Files in this folder:"
-ls .
+(cd "$(dirname "$SOURCE_DIR")" && ls .)
 
 # Make target dir
 echo "[+] Creating folder: $TARGET_DIR"
@@ -69,7 +68,7 @@ for version in "${ROS2_VERSIONS[@]}"; do
   docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -i -d -e ROS_DISTRO=$version --name ros-build-$version ros:$version-ros-base
 
   echo "[+] Copying project files"
-  docker cp . ros-build-$version:/project
+  (cd "$(dirname "$SOURCE_DIR")" && docker cp . ros-build-$version:/project)
 
   echo "[+] Copying deb creation script"
   docker cp /create_deb.sh ros-build-$version:/create_deb.sh
