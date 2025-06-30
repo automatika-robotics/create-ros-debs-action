@@ -44,7 +44,7 @@ TARGET_DIR="$2"
 if [ -z "$3" ]; then
     ROS2_VERSIONS=$(get_versions_with_future_eol)
 else
-    IFS=' ' read -r -a ROS2_VERSIONS <<< "$2"
+    IFS=' ' read -r -a ROS2_VERSIONS <<< "$3"
 fi
 
 echo "[+] Source Directory: $SOURCE_DIR"
