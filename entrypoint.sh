@@ -68,7 +68,7 @@ for version in "${ROS2_VERSIONS[@]}"; do
   docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -i -d -e ROS_DISTRO=$version --name ros-build-$version ros:$version-ros-base
 
   echo "[+] Copying project files"
-  (cd ./"$SOURCE_DIR" && docker cp . ros-build-$version:/project)
+  (cd ./"$SOURCE_DIR" && docker cp . ros-build-$version:/project)  # from the source folder
 
   echo "[+] Copying deb creation script"
   docker cp /create_deb.sh ros-build-$version:/create_deb.sh
@@ -80,7 +80,7 @@ for version in "${ROS2_VERSIONS[@]}"; do
   DEB_NAME=$(docker exec ros-build-$version /bin/sh -c 'ls *.deb')
 
   echo "[+] Copying created deb"
-  docker cp ros-build-$version:$DEB_NAME ./debs/
+  docker cp ros-build-$version:$DEB_NAME ./$TARGET_DIR  # to the destination folder
 
   echo "[+] Deleting build container for ROS2 version: $version"
   docker stop ros-build-$version
@@ -91,7 +91,7 @@ for version in "${ROS2_VERSIONS[@]}"; do
   docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -i -d -e ROS_DISTRO=$version --name ros-test-$version ros:$version-ros-base
 
   echo "[+] Copying deb for testing"
-  docker cp debs/$DEB_NAME ros-test-$version:/
+  docker cp ./$TARGET_DIR/$DEB_NAME ros-test-$version:/
 
   # Install package
   docker exec ros-test-$version /bin/sh -c "apt update && apt install -y python3-pip"
