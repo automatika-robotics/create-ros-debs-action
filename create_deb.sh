@@ -5,7 +5,7 @@ set -xe
 
 echo "[+] Creating deb files"
 apt-get update
-apt-get -y install python3-pip python3-bloom
+apt-get -y install python3-pip python3-bloom dh-python
 apt-get -y install fakeroot dpkg-dev debhelper
 
 # location specified in container build script
