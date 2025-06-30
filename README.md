@@ -4,8 +4,8 @@ The `create-ros-debs-action` GitHub Action automates the process of creating ins
 
 ## Features
 
-- **Multi-version Support**: Generate deb files for specified or all non-EOL (End-of-Life) ROS 2 distributions.
-- **Docker-based Workflow**: Utilizes Docker to ensure consistent build environments across different platforms.
+  - **Multi-version Support**: Generate deb files for specified or all non-EOL (End-of-Life) ROS 2 distributions.
+  - **Docker-based Workflow**: Utilizes Docker to ensure consistent build environments across different platforms.
 
 ## Usage
 
@@ -25,28 +25,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-        uses: automatika-robotics/create-ros-debs-action@v1
+      - uses: automatika-robotics/create-ros-debs-action@v2
         with:
-          dir-name: 'debs'  # Optional, default is 'debs'
+          source-dir-name: '.' # Optional, default is '.'
+          target-dir-name: 'debs'  # Optional, default is 'debs'
           ros-versions-matrix: 'humble iron jazzy'  # Optional, this parameter is a space separated list of strings. Defaults to non-EOL ROS2 versions
 
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: ros2-debs
-          path: ${{ steps.create-debs.outputs.dir-name }}
+          path: debs # Assuming 'debs' is your target-dir-name
 ```
 
 ## Inputs
 
-| Input                 | Description                                                                                                                                                                                                                                                                        | Required | Default Value                      |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------- |
-| `dir-name`            | The directory where the generated deb files will be stored.                                                                                                                                                                                                                        | No       | `'debs'`                           |
-| `ros-versions-matrix` | A space-separated list of ROS2 version names to generate deb packages for (e.g., `'humble iron jazzy'`). If left empty, it defaults to all non-EOL ROS 2 versions. You can check the current EOL status at [endoflife.date/api/ros-2.json](https://endoflife.date/api/ros-2.json). | No       | Non-EOL ROS2 versions (as per API) |
+| Input                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Required | Default Value                                    |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------ |
+| `source-dir-name`     | Name of the directory with `package.xml`. Defaults to root directory.                                                                                                                                                                                                                                                                                                                                                                                                                           | No       | `.`                                              |
+| `target-dir-name`     | Name of the directory for storing generated deb files. Defaults to `debs`.                                                                                                                                                                                                                                                                                                                                                                                                                      | No       | `'debs'`                                         |
+| `ros-versions-matrix` | Space separated strings of ROS2 version names. e.g. `'humble iron jazzy'`. Defaults to versions which have not reached End-of-Life, check [https://endoflife.date/api/ros-2.json](https://endoflife.date/api/ros-2.json). | No       | Non-EOL ROS2 versions (as per API) |
 
 ## Contributions
 
-All contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue in the [repository](https://github.com/automatika-robotics/push-to-release-repo-action/issues).
+All contributions are welcome\! If you find any bugs or have suggestions for improvements, please open an issue in the [repository](https://github.com/automatika-robotics/push-to-release-repo-action/issues).
 
-Happy building! 🚀
+Happy building\! 🚀

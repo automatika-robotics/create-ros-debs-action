@@ -35,19 +35,25 @@ get_versions_with_future_eol() {
     ')
 }
 
-# Read the second argument as the target directory
-TARGET_DIR="$1"
+# Read the second argument as the source directory with package.xml
+SOURCE_DIR="$1"
+# Read the third argument as the target directory
+TARGET_DIR="$2"
 
 # Check if the versions argument is provided, otherwise use the function
-if [ -z "$2" ]; then
+if [ -z "$3" ]; then
     ROS2_VERSIONS=$(get_versions_with_future_eol)
 else
     IFS=' ' read -r -a ROS2_VERSIONS <<< "$2"
 fi
 
+echo "[+] Source Directory: $SOURCE_DIR"
 echo "[+] Target Directory: $TARGET_DIR"
 echo "[+] ROS2 Versions: ${ROS2_VERSIONS[@]}"
 
+
+# Move to source folder
+cd "$(dirname "$SOURCE_DIR")"
 
 # Make target dir
 echo "[+] Creating folder: $TARGET_DIR"

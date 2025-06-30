@@ -1,7 +1,11 @@
 name: "Create ROS2 Debs"
 description: "Automatically create ROS2 deb packages on different versions of ROS2"
 inputs:
-  dir-name:
+  source-dir-name:
+    description: "Name of the directory with package.xml. Defaults to root directory"
+    required: false
+    default: '.'
+  target-dir-name:
     description: "Name of the directory for storing generated deb files. Defaults to debs"
     required: false
     default: 'debs'
@@ -14,7 +18,8 @@ runs:
   using: docker
   image: Dockerfile
   args:
-    - "${{ inputs.dir-name }}"
+    - "${{ inputs.source-dir-name }}"
+    - "${{ inputs.target-dir-name }}"
     - "${{ inputs.ros-versions-matrix }}"
 branding:
   icon: upload
